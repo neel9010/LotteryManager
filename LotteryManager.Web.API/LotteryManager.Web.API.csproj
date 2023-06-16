@@ -11,7 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\LotteryManager.DataAccess.Implementations\LotteryManager.DataAccess.Implementations.csproj" />
+    <ProjectReference Include="..\LotteryManager.Services.Impletation\LotteryManager.Services.Implementations.csproj" />
+    <ProjectReference Include="..\LotteryManager.Services.Interfaces\LotteryManager.Services.Interfaces.csproj" />
   </ItemGroup>
 
 </Project>

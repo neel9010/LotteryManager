@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 
 namespace LotteryManager.DataAccess.Implementations
 {
-    public class SqlDataAccess : ISqlDataAccess
+    public class SqlDataAccess : IDBAccess
     {
         private readonly IConfiguration _config;
         private IDbConnection _dbConnection;
@@ -26,7 +26,7 @@ namespace LotteryManager.DataAccess.Implementations
             CreateConnection(connectionId);
             using (_dbConnection)
             {
-                return await _dbConnection.QueryAsync<T>(storedProcedure, parameters, commandType: CommandType.StoredProcedure);
+                return await _dbConnection.QueryAsync<T>(storedProcedure, parameters, commandType: CommandType.Text);
             }
         }
 

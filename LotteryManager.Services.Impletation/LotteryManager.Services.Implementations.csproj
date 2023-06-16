@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\LotteryManager.DataAccess.Interfaces\LotteryManager.DataAccess.Interfaces.csproj" />
     <ProjectReference Include="..\LotteryManager.Services.Interfaces\LotteryManager.Services.Interfaces.csproj" />
   </ItemGroup>
 

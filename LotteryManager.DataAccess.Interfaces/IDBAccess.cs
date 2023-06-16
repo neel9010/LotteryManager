@@ -2,7 +2,7 @@
 
 namespace LotteryManager.DataAccess.Interfaces
 {
-    public interface ISqlDataAccess
+    public interface IDBAccess
     {
         Task<IEnumerable<T>> LoadData<T, U>(string storedProcedure, U parameters, string connectionId = "Default");
 
