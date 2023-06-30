@@ -4,13 +4,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LotteryManager.Web.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
-    public class GameController : ControllerBase
+    public class GamesController : ControllerBase
     {
         private readonly IGameService _gameService;
 
-        public GameController(IGameService gameService)
+        public GamesController(IGameService gameService)
         {
             _gameService = gameService;
         }

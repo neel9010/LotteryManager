@@ -9,7 +9,7 @@ namespace LotteryManager.DataAccess.Implementations
     public class SqlDataAccess : IDBAccess
     {
         private readonly IConfiguration _config;
-        private IDbConnection _dbConnection;
+        private IDbConnection? _dbConnection;
 
         public SqlDataAccess(IConfiguration config)
         {
