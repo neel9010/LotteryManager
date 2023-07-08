@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="User\**" />
+    <EmbeddedResource Remove="User\**" />
+    <None Remove="User\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Options" Version="7.0.1" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.31.0" />
   </ItemGroup>
@@ -14,10 +20,6 @@
   <ItemGroup>
     <ProjectReference Include="..\LotteryManager.DataAccess.Interfaces\LotteryManager.DataAccess.Interfaces.csproj" />
     <ProjectReference Include="..\LotteryManager.UserManagement.Interfaces\LotteryManager.UserManagement.Interfaces.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="User\" />
   </ItemGroup>
 
 </Project>
