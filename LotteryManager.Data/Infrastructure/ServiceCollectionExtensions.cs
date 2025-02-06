@@ -2,6 +2,7 @@
 using LotteryManager.Data.Infrastructure.Configuration;
 using LotteryManager.Data.Infrastructure.Data;
 using LotteryManager.Data.Repositories;
+using LotteryManager.Data.Repositories.Authentication;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Data;
@@ -32,6 +33,7 @@ namespace LotteryManager.Data.Infrastructure
             // Data providers
             serviceCollection.AddScoped<IDbConnectionProvider, SqlDbConnectionProvider>();
             serviceCollection.AddScoped<IGameRepository, GameRepository>();
+            serviceCollection.AddScoped<IAuthRepository, AuthRepository>();
         }
     }
 }

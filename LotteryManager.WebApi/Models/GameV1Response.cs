@@ -1,6 +1,4 @@
-﻿using LotteryManger.Domain.Entities;
-
-namespace LotteryManager.WebApi.Models
+﻿namespace LotteryManager.WebApi.Models
 {
     public record GameV1Response
     {

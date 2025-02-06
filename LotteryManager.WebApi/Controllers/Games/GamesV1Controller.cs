@@ -1,18 +1,16 @@
 ﻿using LotteryManager.Business.Services;
 using LotteryManager.WebApi.Models;
-using LotteryManger.Domain.Entities;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Extensions;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Net;
 
-namespace LotteryManager.WebApi.Controllers
+namespace LotteryManager.WebApi.Controllers.Games
 {
     [ApiVersion("1.0")]
     [ApiController]
     [Tags("Lottery Instant Games")]
+    [Route("api/v1")]
     public class GamesV1Controller(IGameService gameService) : ControllerBase
     {
         private readonly IGameService _gameService = gameService;

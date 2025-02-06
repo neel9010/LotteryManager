@@ -2,7 +2,6 @@
 using LotteryManager.Data.Infrastructure.Data;
 using LotteryManger.Domain.Entities;
 using Microsoft.Extensions.Logging;
-using System.ComponentModel.Design;
 using System.Data;
 
 namespace LotteryManager.Data.Repositories
