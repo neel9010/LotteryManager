@@ -1,5 +1,6 @@
 ﻿using LotteryManager.Business.Services;
 using LotteryManager.WebApi.Models;
+using LotteryManger.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Extensions;
 using Swashbuckle.AspNetCore.Annotations;
@@ -19,13 +20,14 @@ namespace LotteryManager.WebApi.Controllers.Games
         [SwaggerResponse((int)HttpStatusCode.OK, "Games retrieved successfully", typeof(IEnumerable<GameV1Response>))]
         public async Task<IActionResult> GetAllGamesByState(string state)
         {
-            var game = await _gameService.GetAllGamesByStateAsync(state);
-            var response = game?.Select(x => new GameV1Response
+            IEnumerable<Game>? game = await _gameService.GetAllGamesByStateAsync(state);
+            IEnumerable<GameV1Response>? response = game?.Select(x => new GameV1Response
             {
                 GameId = x.GameId,
                 GameName = x.GameName,
                 TotalTicketsInPack = x.TotalTicketsInPack,
                 TicketPrice = x.TicketPrice,
+                State = state.ToUpper(),
                 ValidationStatus = x.ValidationStatus.GetDisplayName(),
             });
 

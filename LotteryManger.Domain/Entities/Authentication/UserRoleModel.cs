@@ -23,11 +23,11 @@
         /// <summary>
         /// Role
         /// </summary>
-        public virtual RoleModel Role { get; set; }
+        public virtual RoleModel? Role { get; set; }
 
         /// <summary>
         /// User
         /// </summary>
-        public virtual UserModel User { get; set; }
+        public virtual UserModel? User { get; set; }
     }
 }

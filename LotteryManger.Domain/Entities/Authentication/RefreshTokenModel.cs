@@ -23,6 +23,6 @@
         /// <summary>
         /// User <see cref="UserModel"/>
         /// </summary>
-        public virtual UserModel User { get; set; }
+        public virtual UserModel? User { get; set; }
     }
 }

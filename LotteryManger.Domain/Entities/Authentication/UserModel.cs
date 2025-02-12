@@ -13,12 +13,12 @@
         /// <summary>
         /// Username
         /// </summary>
-        public string Username { get; set; }
+        public required string Username { get; set; }
 
         /// <summary>
         /// Password
         /// </summary>
-        public string Password { get; set; }
+        public required string Password { get; set; }
 
         /// <summary>
         /// User roles

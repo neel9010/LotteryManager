@@ -13,32 +13,36 @@ namespace LotteryManager.UI
     {
         public async Task SetAuthorizeHeader()
         {
-            var sessionState = (await localStorage.GetItemAsync<LoginResponseModel>("sessionState"));
-            if (sessionState != null && !string.IsNullOrEmpty(sessionState.Token))
+            LoginResponseModel? sessionState = (await localStorage.GetItemAsync<LoginResponseModel>("sessionState"));
+
+            if (sessionState is null || string.IsNullOrWhiteSpace(sessionState.Token))
             {
-                if (sessionState.TokenExpired < DateTimeOffset.UtcNow.ToUnixTimeSeconds())
+                return;
+            }
+
+            if (sessionState.TokenExpired < DateTimeOffset.UtcNow.ToUnixTimeSeconds())
+            {
+                await ((CustomAuthStateProvider)authStateProvider).MarkUserAsLoggedOut();
+                navigationManager.NavigateTo("/login");
+            }
+            else if (sessionState.TokenExpired < DateTimeOffset.UtcNow.AddMinutes(10).ToUnixTimeSeconds())
+            {
+                LoginResponseModel? loginResponse = await httpClient.GetFromJsonAsync<LoginResponseModel>($"/api/Auth/loginByRefeshToken?refreshToken={sessionState.RefreshToken}");
+
+                if (loginResponse != null)
+                {
+                    await ((CustomAuthStateProvider)authStateProvider).MarkUserAsAuthenticated(loginResponse);
+                    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", loginResponse.Token);
+                }
+                else
                 {
                     await ((CustomAuthStateProvider)authStateProvider).MarkUserAsLoggedOut();
                     navigationManager.NavigateTo("/login");
                 }
-                else if (sessionState.TokenExpired < DateTimeOffset.UtcNow.AddMinutes(10).ToUnixTimeSeconds())
-                {
-                    var res = await httpClient.GetFromJsonAsync<LoginResponseModel>($"/api/Auth/loginByRefeshToken?refreshToken={sessionState.RefreshToken}");
-                    if (res != null)
-                    {
-                        await ((CustomAuthStateProvider)authStateProvider).MarkUserAsAuthenticated(res);
-                        httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", res.Token);
-                    }
-                    else
-                    {
-                        await ((CustomAuthStateProvider)authStateProvider).MarkUserAsLoggedOut();
-                        navigationManager.NavigateTo("/login");
-                    }
-                }
-                else
-                {
-                    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessionState.Token);
-                }
+            }
+            else
+            {
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessionState.Token);
             }
         }
 

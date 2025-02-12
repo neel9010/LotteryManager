@@ -23,10 +23,10 @@ namespace LotteryManager.Data.Infrastructure
                 // Lottery Manager SQL configuration
                 connectionConfiguration.LotteryManger = new DatabaseConnection
                 {
-                    DatabaseName = configuration["ConnectionString:Database"],
-                    SqlServer = configuration["ConnectionString:DbServer"],
-                    UserId = configuration["ConnectionString:UserId"],
-                    Password = configuration["ConnectionString:Password"]
+                    DatabaseName = configuration["ConnectionString:Database"] ?? string.Empty,
+                    SqlServer = configuration["ConnectionString:DbServer"] ?? string.Empty,
+                    UserId = configuration["ConnectionString:UserId"] ?? string.Empty,
+                    Password = configuration["ConnectionString:Password"] ?? string.Empty
                 };
             });
 

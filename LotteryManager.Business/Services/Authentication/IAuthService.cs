@@ -27,5 +27,13 @@ namespace LotteryManager.Business.Services.Authentication
         /// <param name="refreshToken">Refresh Token</param>
         /// <returns>Refresh Token Model <see cref="RefreshTokenModel"/></returns>
         Task<RefreshTokenModel> GetRefreshTokenModel(string refreshToken);
+
+        /// <summary>
+        /// Generate Token
+        /// </summary>
+        /// <param name="user">User <see cref="UserModel"/></param>
+        /// <param name="isRefreshToken">Is generating refresh token</param>
+        /// <returns></returns>
+        string? GenerateToken(UserModel user, bool isRefreshToken = false);
     }
 }
