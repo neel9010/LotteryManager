@@ -1,6 +1,7 @@
 ﻿using LotteryManager.Business.Services;
 using LotteryManager.WebApi.Models;
 using LotteryManger.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Extensions;
 using Swashbuckle.AspNetCore.Annotations;
@@ -8,6 +9,7 @@ using System.Net;
 
 namespace LotteryManager.WebApi.Controllers.Games
 {
+    [Authorize]
     [ApiVersion("1.0")]
     [ApiController]
     [Tags("Lottery Instant Games")]
